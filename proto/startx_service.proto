@@ -10,8 +10,13 @@ message Note {
     string message = 2;
 }
 
-service ChatServer {
+message User {
+    string name = 1;
+}
+
+service StartxServer {
     // This bi-directional stream makes it possible to send and receive Notes between 2 persons
-    rpc ChatStream (Empty) returns (stream Note);
+    rpc MessageStream (User) returns (stream Note);
     rpc SendNote (Note) returns (Empty);
+    rpc Register (User) returns (Empty);
 }
